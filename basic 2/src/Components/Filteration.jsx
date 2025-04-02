@@ -6,7 +6,10 @@ import { toast } from 'react-toastify';
 export const Filteration = ({sim,actual}) => {
     let value=sim;
     // console.log(value);
-  
+    let final=[...new Set(value.map((data)=>data.type))];
+    console.log(final);
+ 
+  console.log(final);
    let Soon=(data)=>{
     actual(data);
    toast.success(`${data} shown`)
@@ -16,11 +19,11 @@ export const Filteration = ({sim,actual}) => {
     <div style={{display:"flex" ,justifyContent:"center",alignItems:"center",gap:"10px"}}>
         <button onClick={()=>Soon("All")}>All</button>
  {
-   value? value.map((data,id)=>{
+   final? final.map((data,id)=>{
         return(
             <div key={id}>
               
-               <Search xor={data.type} pri={Soon}/>
+               <Search xor={data} pri={Soon}/>
             </div>
         )
     }):"null"
